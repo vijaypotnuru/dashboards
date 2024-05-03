@@ -110,343 +110,343 @@ const OpinionPollSurveyList = forwardRef(({ isUser, voter, common, account, show
     },
     {
       name: "part_no",
-      label: "Part No",
+      label: "Asembly",
     },
     {
       name: "part_slno",
-      label: "Part Slno",
+      label: "Mandal",
     },
     {
       name: "voter_id",
-      label: "Voter ID",
+      label: "Booth No",
     },
-    {
-      name: "voter_name",
-      label: "Voter Name",
-      options: {
-        setCellProps: () => ({ style: { minWidth: "200px" } }),
-        customBodyRender: (value, tableMeta, updateValue) => {
-          var data = tableMeta.rowData;
-          console.log("hulk", t("John Doe"));
+    // {
+    //   name: "voter_name",
+    //   label: "Voter Name",
+    //   options: {
+    //     setCellProps: () => ({ style: { minWidth: "200px" } }),
+    //     customBodyRender: (value, tableMeta, updateValue) => {
+    //       var data = tableMeta.rowData;
+    //       console.log("hulk", t("John Doe"));
 
-          return <Typography>{value}</Typography>;
-        },
-      },
-    },
-    {
-      name: "guardian_type",
-      label: "Guardian",
-    },
-    {
-      name: "guardian_name",
-      label: "Guardian Name",
-      options: {
-        setCellProps: () => ({ style: { minWidth: "200px" } }),
-      },
-    },
-    {
-      name: "gender_type",
-      label: "Gender",
-    },
-    {
-      name: "voter_age",
-      label: "Age",
-    },
-    {
-      name: "permenent_address",
-      label: "Permanent Address",
-      options: {
-        setCellProps: () => ({ style: { minWidth: "200px" } }),
-      },
-    },
-    ...(account.user?.desgination_name == "MLA" || account.user?.desgination_name == "Admin"
-      ? [
-          {
-            name: "voter_phone_no",
-            label: "Phone",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                return <Typography>{value ?? "-"}</Typography>;
-              },
-            },
-          },
-          {
-            name: "religion_name",
-            label: "Religion",
-          },
-          {
-            name: "category_id",
-            label: "Category",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                const category = common.newCategory.filter((item) => item.value == value)[0];
-                console.log("category123", category);
-                return category?.label ?? "-";
-              },
-            },
-          },
-          {
-            name: "caste_name",
-            label: "Caste",
-          },
-          {
-            name: "voter_type",
-            label: "Voter Type",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                const voterTypeName = common.voterTypes.filter((item) => item.value == value)[0];
+    //       return <Typography>{value}</Typography>;
+    //     },
+    //   },
+    // },
+    // {
+    //   name: "guardian_type",
+    //   label: "Guardian",
+    // },
+    // {
+    //   name: "guardian_name",
+    //   label: "Guardian Name",
+    //   options: {
+    //     setCellProps: () => ({ style: { minWidth: "200px" } }),
+    //   },
+    // },
+    // {
+    //   name: "gender_type",
+    //   label: "Gender",
+    // },
+    // {
+    //   name: "voter_age",
+    //   label: "Age",
+    // },
+    // {
+    //   name: "permenent_address",
+    //   label: "Permanent Address",
+    //   options: {
+    //     setCellProps: () => ({ style: { minWidth: "200px" } }),
+    //   },
+    // },
+    // ...(account.user?.desgination_name == "MLA" || account.user?.desgination_name == "Admin"
+    //   ? [
+    //     {
+    //       name: "voter_phone_no",
+    //       label: "Phone",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           return <Typography>{value ?? "-"}</Typography>;
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "religion_name",
+    //       label: "Religion",
+    //     },
+    //     {
+    //       name: "category_id",
+    //       label: "Category",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           const category = common.newCategory.filter((item) => item.value == value)[0];
+    //           console.log("category123", category);
+    //           return category?.label ?? "-";
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "caste_name",
+    //       label: "Caste",
+    //     },
+    //     {
+    //       name: "voter_type",
+    //       label: "Voter Type",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           const voterTypeName = common.voterTypes.filter((item) => item.value == value)[0];
 
-                console.log("voterTypeName", voterTypeName);
+    //           console.log("voterTypeName", voterTypeName);
 
-                return voterTypeName?.label ?? "-";
-              },
-            },
-          },
-          {
-            name: "disability",
-            label: "Disability",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                return value == 1 ? "Yes" : value == 0 ? "No" : "-";
-              },
-            },
-          },
-          {
-            name: "govt_employee",
-            label: "Govt Employee",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                return value == 1 ? "Yes" : value == 0 ? "No" : "-";
-              },
-            },
-          },
-          {
-            name: "is_resident",
-            label: "Residential",
-            options: {
-              customBodyRender: (value, tableMeta, updateValue) => {
-                return value == 1 ? "Yes" : value == 0 ? "No" : "-";
-              },
-            },
-          },
-          {
-            name: "volunteer_id",
-            label: "Volunteer",
-            options: {
-              display: false,
-            },
-          },
+    //           return voterTypeName?.label ?? "-";
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "disability",
+    //       label: "Disability",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           return value == 1 ? "Yes" : value == 0 ? "No" : "-";
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "govt_employee",
+    //       label: "Govt Employee",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           return value == 1 ? "Yes" : value == 0 ? "No" : "-";
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "is_resident",
+    //       label: "Residential",
+    //       options: {
+    //         customBodyRender: (value, tableMeta, updateValue) => {
+    //           return value == 1 ? "Yes" : value == 0 ? "No" : "-";
+    //         },
+    //       },
+    //     },
+    //     {
+    //       name: "volunteer_id",
+    //       label: "Volunteer",
+    //       options: {
+    //         display: false,
+    //       },
+    //     },
 
-          {
-            name: "current_address",
-            label: "Current Address",
-            options: {
-              setCellProps: () => ({ style: { minWidth: "200px" } }),
-            },
-          },
-          {
-            name: "nr_state",
-            label: "State",
-          },
-          {
-            name: "nr_city",
-            label: "City",
-          },
-          ...(common.parties
-            ? common.parties.map((item, index) => ({
-                name: "opinionparty",
-                label: item.label,
-                options: {
-                  customBodyRender: (value, tableMeta, updateValue) => {
-                    var data = tableMeta.rowData;
-                    var partyId = item.value;
-                    return (
-                      <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-                        <span
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <CustomRadio
-                            sx={{
-                              p: 0,
-                            }}
-                            customColor={item.color}
-                            disabled={pageActions.survey_perm != 1}
-                            checked={value == partyId}
-                            onChange={() => handleChange(data[0], partyId)}
-                          />
-                        </span>
-                      </Tooltip>
-                    );
-                  },
-                },
-              }))
-            : []),
-          // {
-          //   name: "opinionparty",
-          //   label: "Neutral",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.NEUTRAL;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <NeutralRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => {
-          //                 handleChange(data[0], partyId);
-          //               }}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
+    //     {
+    //       name: "current_address",
+    //       label: "Current Address",
+    //       options: {
+    //         setCellProps: () => ({ style: { minWidth: "200px" } }),
+    //       },
+    //     },
+    //     {
+    //       name: "nr_state",
+    //       label: "State",
+    //     },
+    //     {
+    //       name: "nr_city",
+    //       label: "City",
+    //     },
+    //     ...(common.parties
+    //       ? common.parties.map((item, index) => ({
+    //         name: "opinionparty",
+    //         label: item.label,
+    //         options: {
+    //           customBodyRender: (value, tableMeta, updateValue) => {
+    //             var data = tableMeta.rowData;
+    //             var partyId = item.value;
+    //             return (
+    //               <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //                 <span
+    //                   style={{
+    //                     display: "flex",
+    //                     justifyContent: "center",
+    //                     alignItems: "center",
+    //                   }}
+    //                 >
+    //                   <CustomRadio
+    //                     sx={{
+    //                       p: 0,
+    //                     }}
+    //                     customColor={item.color}
+    //                     disabled={pageActions.survey_perm != 1}
+    //                     checked={value == partyId}
+    //                     onChange={() => handleChange(data[0], partyId)}
+    //                   />
+    //                 </span>
+    //               </Tooltip>
+    //             );
+    //           },
+    //         },
+    //       }))
+    //       : []),
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "Neutral",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.NEUTRAL;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <NeutralRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => {
+    //     //                 handleChange(data[0], partyId);
+    //     //               }}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
 
-          // {
-          //   name: "opinionparty",
-          //   label: "YCP",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.YSRCP;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <YCPRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => handleChange(data[0], partyId)}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
-          // {
-          //   name: "opinionparty",
-          //   label: "TDP",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.TDP;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <TDPRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => handleChange(data[0], partyId)}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
-          // {
-          //   name: "opinionparty",
-          //   label: "JSP",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.JANASENA;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <JSPRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => handleChange(data[0], partyId)}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
-          // {
-          //   name: "opinionparty",
-          //   label: "Others",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.BJP;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <CongressRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => handleChange(data[0], partyId)}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
-          // {
-          //   name: "opinionparty",
-          //   label: "Not Traced",
-          //   options: {
-          //     customBodyRender: (value, tableMeta, updateValue) => {
-          //       var data = tableMeta.rowData;
-          //       var partyId = PARTY_ID.CONGRESS;
-          //       return (
-          //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
-          //           <span>
-          //             <BJPRadio
-          //               sx={{
-          //                 p: 0,
-          //               }}
-          //               disabled={pageActions.survey_perm != 1}
-          //               checked={value == partyId}
-          //               onChange={() => handleChange(data[0], partyId)}
-          //             />
-          //           </span>
-          //         </Tooltip>
-          //       );
-          //     },
-          //   },
-          // },
-        ]
-      : []),
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "YCP",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.YSRCP;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <YCPRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => handleChange(data[0], partyId)}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "TDP",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.TDP;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <TDPRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => handleChange(data[0], partyId)}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "JSP",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.JANASENA;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <JSPRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => handleChange(data[0], partyId)}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "Others",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.BJP;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <CongressRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => handleChange(data[0], partyId)}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
+    //     // {
+    //     //   name: "opinionparty",
+    //     //   label: "Not Traced",
+    //     //   options: {
+    //     //     customBodyRender: (value, tableMeta, updateValue) => {
+    //     //       var data = tableMeta.rowData;
+    //     //       var partyId = PARTY_ID.CONGRESS;
+    //     //       return (
+    //     //         <Tooltip title={pageActions.survey_perm != 1 ? "You don't have access to select" : ""}>
+    //     //           <span>
+    //     //             <BJPRadio
+    //     //               sx={{
+    //     //                 p: 0,
+    //     //               }}
+    //     //               disabled={pageActions.survey_perm != 1}
+    //     //               checked={value == partyId}
+    //     //               onChange={() => handleChange(data[0], partyId)}
+    //     //             />
+    //     //           </span>
+    //     //         </Tooltip>
+    //     //       );
+    //     //     },
+    //     //   },
+    //     // },
+    //   ]
+    //   : []),
 
-    {
-      name: "volunteer_name",
-      label: "Volunteer",
-    },
-    {
-      name: "volunteer_phonenumber",
-      label: "Volunteer Phone",
-    },
-    {
-      name: "surveyed_by",
-      label: "Surveyed By",
-    },
+    // {
+    //   name: "volunteer_name",
+    //   label: "Volunteer",
+    // },
+    // {
+    //   name: "volunteer_phonenumber",
+    //   label: "Volunteer Phone",
+    // },
+    // {
+    //   name: "surveyed_by",
+    //   label: "Surveyed By",
+    // },
     // {
     //   name: "updatedby",
     //   label: "Updated By",
@@ -619,36 +619,12 @@ const OpinionPollSurveyList = forwardRef(({ isUser, voter, common, account, show
 
   return (
     <>
-      <AnalyticsCard names={["Total Voters", "Survey Completed", "Pending"]} values={[voter.count, voter.completed, voter.pending]} />
+
 
       <Box p={1} />
 
       <Card elevation={1}>
-        <FormProvider methods={methods}>
-          <Box p={3}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={5} md={2}>
-                <RHFTextField name="fieldname" label="Search by" select>
-                  {searchFields.map((item, index) => (
-                    <MenuItem key={index} value={item.name}>
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </RHFTextField>
-              </Grid>
 
-              <Grid item xs={4} md={3}>
-                <RHFTextField name="fieldvalue" label="Search..." />
-              </Grid>
-
-              <Grid item xs={1} md={3}>
-                <Button disabled={voter.isLoading} variant="contained" onClick={() => handleSubmit()}>
-                  <SearchIcon />
-                </Button>
-              </Grid>
-            </Grid>
-          </Box>
-        </FormProvider>
 
         <Divider />
 
@@ -660,7 +636,7 @@ const OpinionPollSurveyList = forwardRef(({ isUser, voter, common, account, show
 
         {!voter.isLoading && (
           <>
-            <CustomMuiDataTable title="Opinion Poll" columns={columns} data={voter.data} options={options} />
+            <CustomMuiDataTable title="" columns={columns} data={voter.data} options={options} />
           </>
         )}
       </Card>

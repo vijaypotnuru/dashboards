@@ -8,7 +8,7 @@ export const OTHERColor = "#000000";
 export const NOTTRACEDColor = "#FF8AC9";
 export const DEATHColor = "#FF0000";
 
-export const HeaderColor = "rgb(1, 49, 87)";
+export const HeaderColor = "#F9FAFB";
 
 /// Survey Status Pie Chart color
 export const StartedColor = "#01AF00";

@@ -79,9 +79,9 @@ const SearchByFilter = forwardRef(
     const [isLoadingVillage, setLoadingVillage] = useState(false);
     const [isVolunteerLoading, setVolunteerLoading] = useState(false);
     const [volunteerListData, setVolunteerListData] = useState([]);
-    useEffect(() => {
-      setIntialDefaultValues(true);
-    }, [common]);
+    // useEffect(() => {
+    //   setIntialDefaultValues(true);
+    // }, [common]);
 
     /// addvoter
     let addVoterCall = 0;
@@ -123,99 +123,99 @@ const SearchByFilter = forwardRef(
       }
     }, [formValues.sachivalayam]);
 
-    const setIntialDefaultValues = (allowSubmit) => {
-      if (common?.mandals.length > 0) {
-        if (account?.user.district_pk != null) {
-          var initialDistrict = common?.districts[0];
-          if (common?.districts.length > 0) {
-            setFormValues((state) => ({ ...state, district: initialDistrict }));
-          }
-        }
+    // const setIntialDefaultValues = (allowSubmit) => {
+    //   if (common?.mandals.length > 0) {
+    //     if (account?.user?.district_pk != null) {
+    //       var initialDistrict = common?.districts[0];
+    //       if (common?.districts.length > 0) {
+    //         setFormValues((state) => ({ ...state, district: initialDistrict }));
+    //       }
+    //     }
 
-        if (account?.user.consistency_pk != null) {
-          var initialConstituency = common?.constituencies[0];
-          if (common?.mandals.length > 0) {
-            setFormValues((state) => ({ ...state, constituency: initialConstituency }));
-          }
-        }
+    //     if (account?.user.consistency_pk != null) {
+    //       var initialConstituency = common?.constituencies[0];
+    //       if (common?.mandals.length > 0) {
+    //         setFormValues((state) => ({ ...state, constituency: initialConstituency }));
+    //       }
+    //     }
 
-        if (account?.user.mandal_pk != null) {
-          var initialMandal = common?.mandals[0];
-          if (common?.mandals.length > 0) {
-            setFormValues((state) => ({ ...state, mandal: initialMandal }));
-          }
-        }
+    //     if (account?.user.mandal_pk != null) {
+    //       var initialMandal = common?.mandals[0];
+    //       if (common?.mandals.length > 0) {
+    //         setFormValues((state) => ({ ...state, mandal: initialMandal }));
+    //       }
+    //     }
 
-        if (account?.user.division_pk != null) {
-          var initialDivision = common?.divisions.filter((e) => e.mandal_id == initialMandal?.mandal_id)[0];
-          if (common?.divisions.length > 0) {
-            setFormValues((state) => ({
-              ...state,
-              division: initialDivision ?? null,
-            }));
-          }
-        }
+    //     if (account?.user.division_pk != null) {
+    //       var initialDivision = common?.divisions.filter((e) => e.mandal_id == initialMandal?.mandal_id)[0];
+    //       if (common?.divisions.length > 0) {
+    //         setFormValues((state) => ({
+    //           ...state,
+    //           division: initialDivision ?? null,
+    //         }));
+    //       }
+    //     }
 
-        if (account?.user.sachivalayam_pk != null) {
-          var initialSachivalayam = common?.sachivalayams.filter((e) => e.division_id == initialDivision?.division_id)[0];
-          console.log("initialSachivalayam", initialSachivalayam);
-          if (common?.sachivalayams.length > 0) {
-            setFormValues((state) => ({
-              ...state,
-              sachivalayam: initialSachivalayam ?? null,
-            }));
-          }
-        }
+    //     if (account?.user.sachivalayam_pk != null) {
+    //       var initialSachivalayam = common?.sachivalayams.filter((e) => e.division_id == initialDivision?.division_id)[0];
+    //       console.log("initialSachivalayam", initialSachivalayam);
+    //       if (common?.sachivalayams.length > 0) {
+    //         setFormValues((state) => ({
+    //           ...state,
+    //           sachivalayam: initialSachivalayam ?? null,
+    //         }));
+    //       }
+    //     }
 
-        if (account?.user.part_no != null) {
-          var initialPart = common?.parts.filter((e) => e.sachivalayam_id == initialSachivalayam?.sachivalayam_id)[0];
-          console.log("initialPart", initialPart);
-          if (common?.parts.length > 0) {
-            setFormValues((state) => ({
-              ...state,
-              partno: initialPart ?? null,
-            }));
-          }
-        }
+    //     if (account?.user.part_no != null) {
+    //       var initialPart = common?.parts.filter((e) => e.sachivalayam_id == initialSachivalayam?.sachivalayam_id)[0];
+    //       console.log("initialPart", initialPart);
+    //       if (common?.parts.length > 0) {
+    //         setFormValues((state) => ({
+    //           ...state,
+    //           partno: initialPart ?? null,
+    //         }));
+    //       }
+    //     }
 
-        if (account?.user.group_pk != null) {
-          var initialGroup = common?.clustergroups.filter((e) => e.group_pk == account?.user.group_pk)[0];
-          if (common?.clustergroups.length > 0) {
-            setFormValues((state) => ({
-              ...state,
-              group: initialGroup ?? null,
-            }));
-          }
-        }
+    //     if (account?.user.group_pk != null) {
+    //       var initialGroup = common?.clustergroups.filter((e) => e.group_pk == account?.user.group_pk)[0];
+    //       if (common?.clustergroups.length > 0) {
+    //         setFormValues((state) => ({
+    //           ...state,
+    //           group: initialGroup ?? null,
+    //         }));
+    //       }
+    //     }
 
-        // var initialVillage = common?.villages.filter((e) => e.part_no == initialPart?.part_no)[0];
-        // if (common?.villages.length > 0) {
-        //   setFormValues((state) => ({
-        //     ...state,
-        //     village: initialVillage ?? null,
-        //   }));
-        // }
+    //     // var initialVillage = common?.villages.filter((e) => e.part_no == initialPart?.part_no)[0];
+    //     // if (common?.villages.length > 0) {
+    //     //   setFormValues((state) => ({
+    //     //     ...state,
+    //     //     village: initialVillage ?? null,
+    //     //   }));
+    //     // }
 
-        if (defaultValues) {
-          console.log(defaultValues);
-          setFormValues((state) => ({
-            ...state,
-            district: defaultValues.district_id ? common?.districts.find((e) => e.district_id === defaultValues.district_id) : state.district,
-            constituency: defaultValues.constituency_id ? common?.constituencies.find((e) => e.constituency_id === defaultValues.constituency_id) : state.constituency,
-            mandal: defaultValues.mandal_id ? common?.mandals.find((e) => e.mandal_id === defaultValues.mandal_id) : state.mandal,
-            division: defaultValues.division_id ? common?.divisions.find((e) => e.division_id === defaultValues.division_id) : state.division,
-            sachivalayam: defaultValues.sachivalayam_id ? common?.sachivalayams.find((e) => e.sachivalayam_id === defaultValues.sachivalayam_id) : state.sachivalayam,
-            village: defaultValues.village_id ? common?.villages.find((e) => e.village_id === defaultValues.village_id) : state.village,
-            partno: defaultValues.part_no ? common?.parts.find((e) => e.part_no === defaultValues.part_no) : state.partno,
-            group: defaultValues.group_id ? common?.clustergroups.find((e) => e.group_pk === defaultValues.group_id) : state.group,
-          }));
-        }
+    //     if (defaultValues) {
+    //       console.log(defaultValues);
+    //       setFormValues((state) => ({
+    //         ...state,
+    //         district: defaultValues.district_id ? common?.districts.find((e) => e.district_id === defaultValues.district_id) : state.district,
+    //         constituency: defaultValues.constituency_id ? common?.constituencies.find((e) => e.constituency_id === defaultValues.constituency_id) : state.constituency,
+    //         mandal: defaultValues.mandal_id ? common?.mandals.find((e) => e.mandal_id === defaultValues.mandal_id) : state.mandal,
+    //         division: defaultValues.division_id ? common?.divisions.find((e) => e.division_id === defaultValues.division_id) : state.division,
+    //         sachivalayam: defaultValues.sachivalayam_id ? common?.sachivalayams.find((e) => e.sachivalayam_id === defaultValues.sachivalayam_id) : state.sachivalayam,
+    //         village: defaultValues.village_id ? common?.villages.find((e) => e.village_id === defaultValues.village_id) : state.village,
+    //         partno: defaultValues.part_no ? common?.parts.find((e) => e.part_no === defaultValues.part_no) : state.partno,
+    //         group: defaultValues.group_id ? common?.clustergroups.find((e) => e.group_pk === defaultValues.group_id) : state.group,
+    //       }));
+    //     }
 
-        if (allowSubmit) {
-          setSubmitFlag(true);
-        }
-      }
-    };
+    //     if (allowSubmit) {
+    //       setSubmitFlag(true);
+    //     }
+    //   }
+    // };
 
     const handleSubmit = async (showDuplicates) => {
       console.log(showDuplicates, "showDuplicates");
@@ -356,7 +356,7 @@ const SearchByFilter = forwardRef(
 
       if (onReset != null) onReset();
 
-      setIntialDefaultValues(true);
+      // setIntialDefaultValues(true);
     };
 
     useImperativeHandle(ref, () => ({
@@ -390,7 +390,7 @@ const SearchByFilter = forwardRef(
               getOptionLabel={(option) => option.district_name}
               onChange={handleChange}
               loading={common?.isLoading}
-              disabled={account?.user.district_pk != null}
+              // disabled={account?.user.district_pk != null}
               error={!!errors.district}
               helperText={errors.district}
             />
@@ -407,7 +407,7 @@ const SearchByFilter = forwardRef(
               getOptionLabel={(option) => option.consistency_name}
               onChange={handleChange}
               loading={common?.isLoading}
-              disabled={account?.user.consistency_pk != null}
+              // disabled={account?.user.consistency_pk != null}
               error={!!errors.constituency}
               helperText={errors.constituency}
             />
@@ -424,7 +424,7 @@ const SearchByFilter = forwardRef(
               getOptionLabel={(option) => option.mandal_name}
               onChange={handleChange}
               loading={common?.isLoading}
-              disabled={account?.user.mandal_pk != null}
+              // disabled={account?.user.mandal_pk != null}
               error={!!errors.mandal}
               helperText={errors.mandal}
             />
@@ -440,7 +440,7 @@ const SearchByFilter = forwardRef(
               options={common?.divisions.filter((e) => e.mandal_id == formValues?.mandal?.mandal_id)}
               getOptionLabel={(option) => option.division_name}
               onChange={handleChange}
-              disabled={account?.user.division_pk != null}
+              // disabled={account?.user.division_pk != null}
               error={!!errors.division}
               helperText={errors.division}
             />
@@ -456,7 +456,7 @@ const SearchByFilter = forwardRef(
               options={common?.sachivalayams.filter((e) => e.division_id == formValues?.division?.division_id)}
               getOptionLabel={(option) => option.sachivalayam_name}
               onChange={handleChange}
-              disabled={account?.user.sachivalayam_pk != null}
+              // disabled={account?.user.sachivalayam_pk != null}
               error={!!errors.sachivalayam}
               helperText={errors.sachivalayam}
             />
@@ -472,7 +472,7 @@ const SearchByFilter = forwardRef(
               options={account?.user?.desgination_name === "MLA" && formValues?.mandal === null ? common?.parts : common?.parts.filter((e) => e.sachivalayam_id === formValues?.sachivalayam?.sachivalayam_id)}
               getOptionLabel={(option) => String(option.part_no)}
               onChange={handleChange}
-              disabled={account.user.part_no != null}
+              // disabled={account.user.part_no != null}
               error={!!errors.partno}
               helperText={errors.partno}
             />
@@ -488,7 +488,7 @@ const SearchByFilter = forwardRef(
               options={common?.clustergroups?.filter((e) => e.part_pk == formValues?.partno?.part_no) || []}
               getOptionLabel={(option) => option.label}
               onChange={handleChange}
-              disabled={account.user.group_pk != null}
+              // disabled={account.user.group_pk != null}
               error={!!errors.group}
               helperText={errors.group}
             />

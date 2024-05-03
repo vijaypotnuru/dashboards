@@ -39,6 +39,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
   }, []);
 
   const handleSubmit = async (data) => {
+    console.log("dadasdadsta", data);
     var searchData = searchRef.current.getSearchData();
     var values = {
       ...data,
@@ -87,7 +88,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
   let sortedParties = [...(common?.parties ?? [])].sort((a, b) => a.label.localeCompare(b.label));
 
   return (
-    <Page title={pageActions.pagename}>
+    <Page title="Exit Poll Results">
       <Container maxWidth="xl">
         {/* <Typography variant="h4" sx={{ mb: 1 }}>
           Opinion Survey
@@ -96,6 +97,14 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
         <Card sx={{ p: 3, backgroundColor: searchFiltercolor }}>
           <Grid container spacing={2} alignItems="center">
             <SearchByFilter
+            showOtherFilters={false}
+            showDistrict={false}
+            showConstituency={false}
+            showMandal={false}
+            showDivision={false}
+            showSachivalayam={false}
+            showPartNo={false}
+
               ref={filterRef}
               showVillage={false}
               isClearActive={isClearActive}
@@ -105,32 +114,16 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                 <>
                   <Grid item xs={12} md={6} lg={2}>
                     <RHFAutoComplete
-                      name="intrested_party"
-                      label="Select Party"
-                      value={otherFilterValues.intrested_party}
-                      options={sortedParties}
-                      getOptionLabel={(option) => option.label}
-                      onChange={(name, value) =>
-                        setOtherFilterValues((state) => ({
-                          ...state,
-                          [name]: value,
-                        }))
-                      }
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} md={6} lg={2}>
-                    <RHFAutoComplete
                       name="is_resident"
-                      label="Select Residence"
+                      label="Select Options"
                       value={otherFilterValues.is_resident}
                       options={[
                         {
-                          label: "Resident",
+                          label: "Assembly",
                           value: 1,
                         },
                         {
-                          label: "Non-Resident",
+                          label: "Mandal",
                           value: 0,
                         },
                       ]}
@@ -144,24 +137,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={6} lg={2}>
-                    <RHFAutoComplete
-                      name="isSurveyed"
-                      label="Survey Status"
-                      value={otherFilterValues.isSurveyed}
-                      options={[
-                        { label: "Completed", value: "Y" },
-                        { label: "Pending", value: "N" },
-                      ]}
-                      getOptionLabel={(option) => option.label}
-                      onChange={(name, value) =>
-                        setOtherFilterValues((state) => ({
-                          ...state,
-                          [name]: value,
-                        }))
-                      }
-                    />
-                  </Grid>
+                 
                 </>
               }
             />

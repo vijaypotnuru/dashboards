@@ -20,6 +20,7 @@ const HEADER_DESKTOP = 92;
 const StyledRoot = styled(AppBar)(({ theme }) => ({
   // ...bgBlur({ color: HeaderColor }),
   backgroundColor: HeaderColor,
+  color: "#000000",
   // boxShadow: theme.customShadows.primary,
   [theme.breakpoints.up("lg")]: {
     width: `calc(100% - ${NAV_WIDTH + 1}px)`,
@@ -82,8 +83,8 @@ function Header({ onOpenNav, account }) {
               fontSize: { xs: "0.7rem", sm: "1rem" },
             }}
           >
-            {account.user.state_name}
-            {account.user.desgination_name == "CM" ? "" : <>&#8594; {account.user.district_name}</>}
+
+
           </Typography>
           <br />
           <Typography
@@ -107,54 +108,32 @@ function Header({ onOpenNav, account }) {
             sm: 1,
           }}
         >
-          {account.user.desgination_name == "CM" ? (
-            <Box
-              component="img"
-              src={PUBLIC_URL + "/static/images/" + account.user.party_leader_img}
-              sx={{
-                width: { xs: 40, sm: 60 },
-                height: { xs: 40, sm: 60 },
-              }}
-            />
-          ) : (
-            <>
-              {account.user.mla_img != null && (
-                <Box
-                  component="img"
-                  src={PUBLIC_URL + "/static/images/" + account.user.mla_img}
-                  sx={{
-                    width: { xs: 45, sm: 60 },
-                    height: { xs: 45, sm: 60 },
-                  }}
-                />
-              )}
-              {
-                account.user.party_2ndleader_img != null && (
-                  <>
-                    <Box
-                      component="img"
-                      src={PUBLIC_URL + "/static/images/" + `${account.user.party_2ndleader_img == null ? "logo.png" : account.user.party_2ndleader_img}`}
-                      sx={{
-                        width: { xs: 45, sm: 60 },
-                        height: { xs: 45, sm: 60 },
-                      }}
-                    />
-
-                    <Box
-                      component="img"
-                      src={PUBLIC_URL + "/static/images/" + `${account.user.party_leader_img == null ? "imgs-3.png" : account.user.party_leader_img}`}
-                      sx={{
-                        width: { xs: 45, sm: 60 },
-                        height: { xs: 45, sm: 60 },
-                      }}
-                    />
-                  </>
-                )
-              }
-            </>
-          )}
 
           <Box p={0.5} />
+          <Box
+            component="img"
+            src={PUBLIC_URL + "/static/images/imgs-1.png"}
+            sx={{
+              width: { xs: 45, sm: 60 },
+              height: { xs: 45, sm: 60 },
+            }}
+          />
+          <Box
+            component="img"
+            src={PUBLIC_URL + "/static/images/imgs-2.png"}
+            sx={{
+              width: { xs: 45, sm: 60 },
+              height: { xs: 45, sm: 60 },
+            }}
+          />
+          <Box
+            component="img"
+            src={PUBLIC_URL + "/static/images/imgs-3.png"}
+            sx={{
+              width: { xs: 45, sm: 60 },
+              height: { xs: 45, sm: 60 },
+            }}
+          />
 
           {/* <IconButton sx={{ color: "white" }}>
             <Badge badgeContent={4} color="error">
@@ -162,7 +141,7 @@ function Header({ onOpenNav, account }) {
             </Badge>
           </IconButton> */}
 
-          <AccountPopover />
+
         </Stack>
       </StyledToolbar>
     </StyledRoot>

@@ -7,21 +7,9 @@ import { authLogout } from "../actions/auth";
 const ProtectedRoute = ({ type, auth, showAlert, authLogout }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    var now = new Date();
-    const timeDifference = Math.max(0, (auth.user?.expiry || 0) - now.getTime());
 
-    const timeoutId = setTimeout(() => {
-      authLogout();
-      navigate("/logout", { replace: true });
-    }, timeDifference);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  return auth.isAuthenticated ? <Outlet /> : <Navigate to="/logout" replace />;
+  return <Outlet />;
 };
 
 const mapStateToProps = (state) => {

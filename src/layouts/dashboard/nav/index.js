@@ -6,7 +6,7 @@ import useResponsive from "../../../hooks/useResponsive";
 import Logo from "../../../components/logo";
 import Scrollbar from "../../../components/Scrollbar";
 import NavSection from "../../../components/NavSection";
-import { accessNavConfig, adminNavConfig, getAccessNavConfig, mlaNavConfig, operatorNavConfig, userNavConfig } from "./config";
+import {  userNavConfig } from "./config";
 import { connect } from "react-redux";
 import { LOGIN_TYPES, PUBLIC_URL } from "../../../constants";
 
@@ -44,9 +44,9 @@ const Nav = ({ account, openNav, onCloseNav }) => {
   // }, []);
 
   useEffect(() => {
-    let navbar = getAccessNavConfig(account.user.permissions);
+    let navbar = userNavConfig
     setNavConfig(navbar);
-  }, [account.user.permissions]); // Runs when component mounts and whenever account.user.permissions changes
+  }, [account?.user?.permissions]); // Runs when component mounts and whenever account.user.permissions changes
 
   useEffect(() => {
     if (openNav) {
@@ -57,7 +57,9 @@ const Nav = ({ account, openNav, onCloseNav }) => {
   const renderContent = (
     <Scrollbar
       sx={{
-        backgroundImage: "linear-gradient(to bottom, #013157,#013157, #006D4D)",
+        // backgroundImage: "linear-gradient(to bottom, #013157,#013157, #006D4D)",
+        backgroundColor: "#F9FAFB",
+        color: "#000000",
       }}
     >
       <Box
@@ -67,16 +69,17 @@ const Nav = ({ account, openNav, onCloseNav }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          color: "#000000",
         }}
       >
         <Box component="img" src={PUBLIC_URL + "/static/logo.png"} sx={{ width: "60px", height: "60px" }} />
 
         <Typography variant="subtitle1" color="text.white" sx={{ pl: 2 }}>
-          {account.user.consistency_name?.toUpperCase()} CONSTITUENCY
+        {/* CONSTITUENCY */}
         </Typography>
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      {/* <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar>A</Avatar>
@@ -92,7 +95,7 @@ const Nav = ({ account, openNav, onCloseNav }) => {
             </Box>
           </StyledAccount>
         </Link>
-      </Box>
+      </Box> */}
 
       <NavSection data={navConfig} />
 

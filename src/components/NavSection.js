@@ -31,7 +31,7 @@ const ListItemStyle = styled((props) => (
 const ListItemIconStyle = styled(ListItemIcon)({
   width: 22,
   height: 22,
-  color: "inherit",
+  color: "#000000",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -141,6 +141,7 @@ function NavItem({ item, active }) {
                         ...(isActiveSub && {
                           transform: "scale(2)",
                           bgcolor: "primary.main",
+                          color: "#000000",
                         }),
                       }}
                     />
@@ -168,7 +169,9 @@ function NavItem({ item, active }) {
       }}
     >
       <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-      <ListItemText disableTypography primary={title} />
+      <ListItemText disableTypography primary={title} sx={{
+        color: "#000000",
+      }} />
       {info && info}
     </ListItemStyle>
   );
@@ -188,7 +191,7 @@ export default function NavSection({ data, ...other }) {
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
         {data?.map((item) => (
-          <NavItem key={item.title} item={item} active={match} />
+          <NavItem key={item.title} item={item} active={match} c />
         ))}
       </List>
     </Box>

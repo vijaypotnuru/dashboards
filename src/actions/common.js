@@ -62,10 +62,7 @@ export const getAllCommonData = (user) => async (dispatch) => {
         part_no: null,
       }),
       ApiServices.postRequest(getAllVoterTypesRoute),
-      ApiServices.postRequest(getFilterDataRoute, {
-        district_id: user.district_pk,
-        consistency_id: user.consistency_pk,
-      }),
+      ApiServices.postRequest(getFilterDataRoute),
       ApiServices.postRequest(getAllAgeGroupListRoute),
       ApiServices.postRequest(getSurvedbyUsersList),
     ]);
@@ -213,33 +210,33 @@ export const getAllCommonData = (user) => async (dispatch) => {
 
     console.log("filtersData123", filtersData);
 
-    if (user.district_pk != null) {
-      filtersData["districts"] = districtResponseData.filter((e) => e.district_id == user.district_pk);
-    }
+    // if (user.district_pk != null) {
+    //   filtersData["districts"] = districtResponseData.filter((e) => e.district_id == user.district_pk);
+    // }
 
-    if (user.consistency_pk != null) {
-      filtersData["constituencies"] = constituencyResponseData.filter((e) => e.consistency_id == user.consistency_pk);
-    }
+    // if (user.consistency_pk != null) {
+    //   filtersData["constituencies"] = constituencyResponseData.filter((e) => e.consistency_id == user.consistency_pk);
+    // }
 
-    if (user.mandal_pk != null) {
-      filtersData["mandals"] = searchFilterResponseData.mandals.filter((e) => e.mandal_id == user.mandal_pk);
-    }
+    // if (user.mandal_pk != null) {
+    //   filtersData["mandals"] = searchFilterResponseData.mandals.filter((e) => e.mandal_id == user.mandal_pk);
+    // }
 
-    if (user.division_pk != null) {
-      filtersData["divisions"] = searchFilterResponseData.divisions.filter((e) => e.division_id == user.division_pk);
-    }
+    // if (user.division_pk != null) {
+    //   filtersData["divisions"] = searchFilterResponseData.divisions.filter((e) => e.division_id == user.division_pk);
+    // }
 
-    if (user.sachivalayam_pk != null) {
-      filtersData["sachivalayams"] = searchFilterResponseData.sachivalayams.filter((e) => e.sachivalayam_id == user.sachivalayam_pk);
-    }
+    // if (user.sachivalayam_pk != null) {
+    //   filtersData["sachivalayams"] = searchFilterResponseData.sachivalayams.filter((e) => e.sachivalayam_id == user.sachivalayam_pk);
+    // }
 
-    if (user.part_no != null) {
-      filtersData["parts"] = searchFilterResponseData.parts.filter((e) => e.part_no == user.part_no);
-    }
+    // if (user.part_no != null) {
+    //   filtersData["parts"] = searchFilterResponseData.parts.filter((e) => e.part_no == user.part_no);
+    // }
 
-    if (user.group_id != null) {
-      filtersData["clustergroups"] = groupResponseData.filter((e) => e.group_pk == user.group_id);
-    }
+    // if (user.group_id != null) {
+    //   filtersData["clustergroups"] = groupResponseData.filter((e) => e.group_pk == user.group_id);
+    // }
 
     // if (user.village_pk != null) {
     //   filtersData["villages"] = villageResponseData.filter((e) => e.village_pk == user.village_pk);
