@@ -75,6 +75,7 @@ const OpinionPollSurveyList = forwardRef(({ isUser, voter, common, account, show
     {
       name: "assembly",
       label: "Asembly",
+      
     },
     {
       name: "mandal",

@@ -12,6 +12,8 @@ const getMuiTableTheme = () =>
           root: {
             backgroundColor: searchFiltercolor,
             padding: "2px",
+            paddingLeft: "50px",
+            paddingRight: "50px",
           },
         },
       },
