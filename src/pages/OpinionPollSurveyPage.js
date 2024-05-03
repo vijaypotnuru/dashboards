@@ -233,6 +233,12 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
   const uniqueBooth = [...new Set(newFiltersData?.map(item => item.booth))];
   console.log("uniqueBooth", uniqueBooth);
 
+
+
+
+
+
+
   return (
     <Page title="Exit Poll Results">
       <Container maxWidth="xl">
