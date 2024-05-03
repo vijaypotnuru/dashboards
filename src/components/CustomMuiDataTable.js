@@ -94,7 +94,7 @@ const CustomMuiDataTable = ({ title, columns, data, options }) => {
 
   return (
     <ThemeProvider theme={getMuiTableTheme()}>
-      <MUIDataTable title={title} columns={columns} data={data} options={cusOption} />
+      <MUIDataTable title={title} columns={columns} data={data} options={cusOption} sx />
     </ThemeProvider>
   );
 };

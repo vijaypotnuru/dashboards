@@ -15,10 +15,13 @@ import { UncontrolledTextField } from "../components/hook-form/RHFTextField";
 import { ClearAllOutlined } from "@mui/icons-material";
 import ApiServices from "../services/apiservices";
 import { getAllVotorsSurveyRoute } from "../utils/apis";
+import { use } from "i18next";
+import axios from "axios";
 
 const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, common, account, voter }) => {
   const userPermission = account.user && account.user.permissions ? account.user.permissions : [];
   const pageActions = userPermission.filter((p) => p.page_id === 114)[0];
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log("ddfdfdfdfdffeuserwe", pageActions);
 
@@ -30,7 +33,13 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     intrested_party: null,
     is_resident: null,
     isSurveyed: null,
+    assembly: null,
+    mandal: null,
+    booth: null,
   });
+
+  const [newFiltersData, setNewFiltersData] = useState(null);
+  const [pollResultsData, setPollResultsData] = useState(null);
 
   useEffect(() => {
     return () => {
@@ -38,20 +47,75 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     };
   }, []);
 
-  const handleSubmit = async (data) => {
-    console.log("dadasdadsta", data);
-    var searchData = searchRef.current.getSearchData();
-    var values = {
-      ...data,
-      intrested_party: otherFilterValues.intrested_party?.value ?? null,
-      is_resident: otherFilterValues.is_resident?.value ?? null,
-      isSurveyed: otherFilterValues.isSurveyed?.value ?? null,
-      sort_by: null,
-      ...searchData,
-    };
 
-    await getAllVotersSurvey(values);
-    setFilterValues(values);
+
+  useEffect(() => {
+
+    setIsLoading(true);
+    const newFiltersResponse = async () => {
+      // use axios to get the data
+      console.log("with s", "https://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallmandalbooths/");
+      const response = await axios.get("https://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallmandalbooths/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEifQ.8_itYAEsDz7FW2mR0DLP9XQhzrU_x5mxOaqQva-0pug`,
+        },
+      });
+
+
+      console.log("responseDadasdsadasdadta", response);
+      setNewFiltersData(response.data.data);
+    }
+
+    const pollResultsData = async () => {
+      // use axios to get the data
+      console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");
+      const response = await axios.post("http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/", {
+        assembly: null,
+        mandal: null,
+        booth: null,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEifQ.8_itYAEsDz7FW2mR0DLP9XQhzrU_x5mxOaqQva-0pug`,
+        },
+      });
+
+      console.log("pollResultsData", response);
+      setPollResultsData(response.data.data);
+    }
+    newFiltersResponse();
+    pollResultsData();
+    setIsLoading(false);
+  }, []);
+
+
+
+
+  const handleSubmit = async (data) => {
+    console.log("hulksdsdsdadw478956132", data);
+
+    if (otherFilterValues.assembly == null) {
+      alert("Please select Any Filter");
+      return;
+    }
+
+    setIsLoading(true);
+    console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");
+    const response = await axios.post("http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/", {
+      assembly: otherFilterValues.assembly?.assembly ?? null,
+      mandal: otherFilterValues.mandal?.mandal ?? null,
+      booth: otherFilterValues.booth?.booth ?? null,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEifQ.8_itYAEsDz7FW2mR0DLP9XQhzrU_x5mxOaqQva-0pug`,
+      },
+    });
+
+    console.log("pollResultsDaddddd12345678ta", response);
+    setPollResultsData(response.data.data);
+    setIsLoading(false);
   };
 
   const handleSearchSubmit = () => {
@@ -76,16 +140,27 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
       intrested_party: null,
       is_resident: null,
       isSurveyed: null,
+      assembly: null,
+      mandal: null,
+      booth: null,
+
     });
 
     searchRef.current.reset();
   };
 
-  let isClearActive = otherFilterValues.intrested_party || otherFilterValues.is_resident || otherFilterValues.isSurveyed;
+  let isClearActive = otherFilterValues.intrested_party || otherFilterValues.is_resident || otherFilterValues.isSurveyed || otherFilterValues.assembly || otherFilterValues.mandal || otherFilterValues.booth;
 
   isClearActive = isClearActive != null;
 
   let sortedParties = [...(common?.parties ?? [])].sort((a, b) => a.label.localeCompare(b.label));
+
+  console.log("newFiltersDdsdadadsdata", newFiltersData,
+    otherFilterValues
+  );
+
+  console.log("filterMandal", newFiltersData?.filter((item) => item?.assembly == otherFilterValues?.assembly?.assembly) ?? []);
+
 
   return (
     <Page title="Exit Poll Results">
@@ -97,13 +172,13 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
         <Card sx={{ p: 3, backgroundColor: searchFiltercolor }}>
           <Grid container spacing={2} alignItems="center">
             <SearchByFilter
-            showOtherFilters={false}
-            showDistrict={false}
-            showConstituency={false}
-            showMandal={false}
-            showDivision={false}
-            showSachivalayam={false}
-            showPartNo={false}
+              showOtherFilters={false}
+              showDistrict={false}
+              showConstituency={false}
+              showMandal={false}
+              showDivision={false}
+              showSachivalayam={false}
+              showPartNo={false}
 
               ref={filterRef}
               showVillage={false}
@@ -114,20 +189,41 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                 <>
                   <Grid item xs={12} md={6} lg={2}>
                     <RHFAutoComplete
-                      name="is_resident"
-                      label="Select Options"
-                      value={otherFilterValues.is_resident}
-                      options={[
-                        {
-                          label: "Assembly",
-                          value: 1,
-                        },
-                        {
-                          label: "Mandal",
-                          value: 0,
-                        },
-                      ]}
-                      getOptionLabel={(option) => option.label}
+                      name="assembly"
+                      label="Select Assembly"
+                      value={otherFilterValues.assembly}
+                      options={newFiltersData ?? []}
+                      getOptionLabel={(option) => option.assembly}
+                      onChange={(name, value) =>
+                        setOtherFilterValues((state) => ({
+                          ...state,
+                          [name]: value,
+                        }))
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6} lg={2}>
+                    <RHFAutoComplete
+                      name="mandal"
+                      label="Select Mandal"
+                      value={otherFilterValues.mandal}
+                      options={newFiltersData?.filter((item) => item?.assembly == otherFilterValues?.assembly?.assembly) ?? []}
+                      getOptionLabel={(option) => option.mandal}
+                      onChange={(name, value) =>
+                        setOtherFilterValues((state) => ({
+                          ...state,
+                          [name]: value,
+                        }))
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6} lg={2}>
+                    <RHFAutoComplete
+                      name="booth"
+                      label="Select Booth"
+                      value={otherFilterValues.booth}
+                      options={newFiltersData?.filter((item) => item?.mandal == otherFilterValues?.mandal?.mandal) ?? []}
+                      getOptionLabel={(option) => option.booth}
                       onChange={(name, value) =>
                         setOtherFilterValues((state) => ({
                           ...state,
@@ -137,7 +233,8 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                     />
                   </Grid>
 
-                 
+
+
                 </>
               }
             />
@@ -206,7 +303,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
 
         <Box p={1} />
 
-        <OpinionPollSurveyList ref={searchRef} isUser={isUser} handleSubmit={handleSearchSubmit} handlePaginationSubmit={handlePaginationSubmit} getTableVotersData={getTableVotersData} />
+        <OpinionPollSurveyList ref={searchRef} isUser={isUser} handleSubmit={handleSearchSubmit} handlePaginationSubmit={handlePaginationSubmit} getTableVotersData={getTableVotersData} pollResultsData={pollResultsData} isLoading={isLoading} />
       </Container>
     </Page>
   );

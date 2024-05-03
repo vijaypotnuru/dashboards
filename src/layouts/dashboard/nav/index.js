@@ -58,7 +58,7 @@ const Nav = ({ account, openNav, onCloseNav }) => {
     <Scrollbar
       sx={{
         // backgroundImage: "linear-gradient(to bottom, #013157,#013157, #006D4D)",
-        backgroundColor: "#F9FAFB",
+        backgroundColor: "#a5f0ce",
         color: "#000000",
       }}
     >

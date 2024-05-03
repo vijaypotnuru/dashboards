@@ -10,7 +10,7 @@ const userPermission = []
 const userNavConfig = [
   {
     title: "Exit Poll Results",
-    path: "/user/opinionsurvey/survey",
+    path: "/",
     icon: <Iconify icon="ic:round-dashboard" width="24px" height="24px" />,
   },
 ];
