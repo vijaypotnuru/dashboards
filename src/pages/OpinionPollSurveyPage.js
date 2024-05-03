@@ -159,8 +159,79 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     otherFilterValues
   );
 
-  console.log("filterMandal", newFiltersData?.filter((item) => item?.assembly == otherFilterValues?.assembly?.assembly) ?? []);
+  // same assembly name repeated so please filter the all different assembly names see demo data below and filter the assembly names
+  // {
+  //   "id": 36,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "ONGOLE URBAN",
+  //   "booth": "36"
+  // },
+  // {
+  //   "id": 37,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "ONGOLE URBAN",
+  //   "booth": "37"
+  // },
+  // {
+  //   "id": 38,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "ONGOLE URBAN",
+  //   "booth": "38"
+  // },
+  // {
+  //   "id": 39,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "ONGOLE URBAN",
+  //   "booth": "39"
+  // },
+  // {
+  //   "id": 40,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "ONGOLE URBAN",
+  //   "booth": "40"
+  // },
+  // {
+  //   "id": 41,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "KOTHAPATNAM",
+  //   "booth": "41"
+  // },
+  // {
+  //   "id": 42,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "KOTHAPATNAM",
+  //   "booth": "42"
+  // },
+  // {
+  //   "id": 43,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "KOTHAPATNAM",
+  //   "booth": "43"
+  // },
+  // {
+  //   "id": 44,
+  //   "parliament": "ONGOLE",
+  //   "assembly": "ONGOLE",
+  //   "mandal": "KOTHAPATNAM",
+  //   "booth": "44"
+  // },
 
+  const uniqueAssembly = [...new Set(newFiltersData?.map(item => item.assembly))];
+  console.log("uniqueAssembly", uniqueAssembly);
+
+  const uniqueMandal = [...new Set(newFiltersData?.map(item => item.mandal))];
+  console.log("uniqueMandal", uniqueMandal);
+
+  const uniqueBooth = [...new Set(newFiltersData?.map(item => item.booth))];
+  console.log("uniqueBooth", uniqueBooth);
 
   return (
     <Page title="Exit Poll Results">
@@ -192,14 +263,15 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                       name="assembly"
                       label="Select Assembly"
                       value={otherFilterValues.assembly}
-                      options={newFiltersData ?? []}
+                      options={uniqueAssembly.map((item) => ({ assembly: item }))}
                       getOptionLabel={(option) => option.assembly}
-                      onChange={(name, value) =>
+                      onChange={(name, value) => {
+                        console.log("dadddasdwee234567", name, "value  ", value);
                         setOtherFilterValues((state) => ({
                           ...state,
                           [name]: value,
                         }))
-                      }
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} md={6} lg={2}>
@@ -207,7 +279,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                       name="mandal"
                       label="Select Mandal"
                       value={otherFilterValues.mandal}
-                      options={newFiltersData?.filter((item) => item?.assembly == otherFilterValues?.assembly?.assembly) ?? []}
+                      options={uniqueMandal.map((item) => ({ mandal: item }))}
                       getOptionLabel={(option) => option.mandal}
                       onChange={(name, value) =>
                         setOtherFilterValues((state) => ({
@@ -222,7 +294,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                       name="booth"
                       label="Select Booth"
                       value={otherFilterValues.booth}
-                      options={newFiltersData?.filter((item) => item?.mandal == otherFilterValues?.mandal?.mandal) ?? []}
+                      options={uniqueBooth.map((item) => ({ booth: item }))}
                       getOptionLabel={(option) => option.booth}
                       onChange={(name, value) =>
                         setOtherFilterValues((state) => ({
