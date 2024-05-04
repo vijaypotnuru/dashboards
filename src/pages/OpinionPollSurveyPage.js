@@ -95,10 +95,6 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
   const handleSubmit = async (data) => {
     console.log("hulksdsdsdadw478956132", data);
 
-    if (otherFilterValues.assembly == null) {
-      alert("Please select Any Filter");
-      return;
-    }
 
     setIsLoading(true);
     console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");

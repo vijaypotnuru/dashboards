@@ -23,6 +23,8 @@ const getMuiTableTheme = () =>
             padding: "2px",
             paddingLeft: "25px",
             paddingRight: "25px",
+            paddingTop: "15px",
+            paddingBottom: "15px",
           },
         },
       },

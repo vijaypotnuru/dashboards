@@ -72,7 +72,7 @@ const Nav = ({ account, openNav, onCloseNav }) => {
           color: "#000000",
         }}
       >
-        <Box component="img" src={PUBLIC_URL + "/static/logo.png"} sx={{ width: "60px", height: "60px" }} />
+        <Box component="img" src={PUBLIC_URL + "/static/logo.png"} sx={{ width: "90px", height: "90px" }} />
 
         <Typography variant="subtitle1" color="text.white" sx={{ pl: 2 }}>
         {/* CONSTITUENCY */}
