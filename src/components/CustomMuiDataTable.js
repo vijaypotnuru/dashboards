@@ -21,6 +21,8 @@ const getMuiTableTheme = () =>
         styleOverrides: {
           root: {
             padding: "2px",
+            paddingLeft: "25px",
+            paddingRight: "25px",
           },
         },
       },

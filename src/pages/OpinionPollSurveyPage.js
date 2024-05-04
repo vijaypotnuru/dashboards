@@ -103,9 +103,9 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     setIsLoading(true);
     console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");
     const response = await axios.post("http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/", {
-      assembly: otherFilterValues.assembly?.assembly ?? null,
-      mandal: otherFilterValues.mandal?.mandal ?? null,
-      booth: otherFilterValues.booth?.booth ?? null,
+      assembly: otherFilterValues?.assembly ?? null,
+      mandal: otherFilterValues?.mandal ?? null,
+      booth: otherFilterValues?.booth ?? null,
     }, {
       headers: {
         "Content-Type": "application/json",
@@ -159,7 +159,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     otherFilterValues
   );
 
-  // same assembly name repeated so please filter the all different assembly names see demo data below and filter the assembly names
+
   // {
   //   "id": 36,
   //   "parliament": "ONGOLE",
@@ -238,7 +238,7 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
 
 
 
-
+  console.log("otherFilterValues", otherFilterValues);
   return (
     <Page title="Exit Poll Results">
       <Container maxWidth="xl">
@@ -269,10 +269,9 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                       name="assembly"
                       label="Select Assembly"
                       value={otherFilterValues.assembly}
-                      options={uniqueAssembly.map((item) => ({ assembly: item }))}
-                      getOptionLabel={(option) => option.assembly}
+                      options={[...new Set(newFiltersData?.map(item => item.assembly))]}
+                      getOptionLabel={(option) => option}
                       onChange={(name, value) => {
-                        console.log("dadddasdwee234567", name, "value  ", value);
                         setOtherFilterValues((state) => ({
                           ...state,
                           [name]: value,
@@ -285,31 +284,36 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
                       name="mandal"
                       label="Select Mandal"
                       value={otherFilterValues.mandal}
-                      options={uniqueMandal.map((item) => ({ mandal: item }))}
-                      getOptionLabel={(option) => option.mandal}
-                      onChange={(name, value) =>
+                      // options={newFiltersData}
+                      options={[...new Set(newFiltersData?.filter(item => item.assembly == otherFilterValues.assembly).map(item => item.mandal))]}
+                      getOptionLabel={(option) => option}
+                      onChange={(name, value) => {
+                        console.log("value123456", value);
                         setOtherFilterValues((state) => ({
                           ...state,
                           [name]: value,
                         }))
-                      }
+                      }}
                     />
                   </Grid>
+
                   <Grid item xs={12} md={6} lg={2}>
                     <RHFAutoComplete
                       name="booth"
                       label="Select Booth"
                       value={otherFilterValues.booth}
-                      options={uniqueBooth.map((item) => ({ booth: item }))}
-                      getOptionLabel={(option) => option.booth}
-                      onChange={(name, value) =>
+                      // options={newFiltersData}
+                      options={[...new Set(newFiltersData?.filter(item => item.mandal == otherFilterValues.mandal).map(item => item.booth))]}
+                      getOptionLabel={(option) => option}
+                      onChange={(name, value) => {
                         setOtherFilterValues((state) => ({
                           ...state,
                           [name]: value,
                         }))
-                      }
+                      }}
                     />
                   </Grid>
+
 
 
 
