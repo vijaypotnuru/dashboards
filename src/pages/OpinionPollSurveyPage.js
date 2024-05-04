@@ -54,8 +54,8 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
     setIsLoading(true);
     const newFiltersResponse = async () => {
       // use axios to get the data
-      console.log("with s", "https://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallmandalbooths/");
-      const response = await axios.get("https://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallmandalbooths/", {
+      console.log("with s", "https://api.paybackgold.com/api/identcity/getallmandalbooths/");
+      const response = await axios.get("https://api.paybackgold.com/api/identcity/getallmandalbooths/", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEifQ.8_itYAEsDz7FW2mR0DLP9XQhzrU_x5mxOaqQva-0pug`,
@@ -69,8 +69,8 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
 
     const pollResultsData = async () => {
       // use axios to get the data
-      console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");
-      const response = await axios.post("http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/", {
+      console.log("with s", "https://api.paybackgold.com/api/identcity/getallpolledvotes/");
+      const response = await axios.post("https://api.paybackgold.com/api/identcity/getallpolledvotes/", {
         assembly: null,
         mandal: null,
         booth: null,
@@ -97,8 +97,8 @@ const OpinionPollSurveyPage = ({ isUser, getAllVotersSurvey, clearVoterReducer, 
 
 
     setIsLoading(true);
-    console.log("with s", "http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/");
-    const response = await axios.post("http://self-initiatives-nodejs-env.ap-south-1.elasticbeanstalk.com/api/identcity/getallpolledvotes/", {
+    console.log("with s", "https://api.paybackgold.com/api/identcity/getallpolledvotes/");
+    const response = await axios.post("https://api.paybackgold.com/api/identcity/getallpolledvotes/", {
       assembly: otherFilterValues?.assembly ?? null,
       mandal: otherFilterValues?.mandal ?? null,
       booth: otherFilterValues?.booth ?? null,
